@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "author": "Aamish Maqbool",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-s3-devkitc-1",
+      "id": "esp",
+      "top": -0.18,
+      "left": 4.57,
+      "attrs": { "env": "micropython-20231227-v1.22.0", "flashSize": "8" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 150.2,
+      "left": 172.8,
+      "attrs": { "color": "green", "xray": "1", "bounce": "1" }
+    },
+    {
+      "type": "board-ssd1306",
+      "id": "oled1",
+      "top": 252.74,
+      "left": -182.17,
+      "attrs": { "i2cAddress": "0x3c" }
+    },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -57.3, "left": -130.2, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:0", "btn1:1.l", "green", [ "h0" ] ],
+    [ "esp:GND.4", "btn1:2.l", "black", [ "h0" ] ],
+    [ "oled1:SDA", "esp:8", "orange", [ "h67.27", "v-124.8", "h57.65" ] ],
+    [ "oled1:SCL", "esp:9", "cyan", [ "v0" ] ],
+    [ "oled1:VCC", "esp:5V", "red", [ "v0" ] ],
+    [ "oled1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "dht1:VCC", "esp:5V", "red", [ "v0" ] ],
+    [ "dht1:GND", "esp:GND.1", "black", [ "v172.8", "h91.48" ] ],
+    [ "esp:4", "dht1:SDA", "green", [ "h-57.65", "v28.8", "h-57.6" ] ]
+  ],
+  "dependencies": {}
+}
